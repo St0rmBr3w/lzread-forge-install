@@ -222,7 +222,7 @@ cast call $READ_PUBLIC_ADDRESS "quoteReadFee(address,uint32,bytes)" \
 
 ### **"Library setting reverted"**
 - **Cause**: Trying to reset an already configured library
-- **Solution**: Libraries can only be set once. If you need to change, deploy new contracts
+- **Solution**: Libraries can only be set once. Comment out setSendLibrary and setReceiveLibrary if already set.
 
 ### **"Read operation fails with unknown error"**
 - **Cause**: Incorrect enforced options or missing configuration
