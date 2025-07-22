@@ -99,10 +99,11 @@ Update `script/SetConfig.s.sol` with the correct LayerZero addresses for your ne
 
 ```solidity
 // For Arbitrum example:
-uint32 public constant READ_CHANNEL = 30110; // Arbitrum EID
-address public constant ENDPOINT_ADDRESS = 0x1a44076050125825900e736c501f859c50fE728c;
-address public constant READ_LIB_ADDRESS = 0xbcd4CADCac3F767C57c4F402932C4705DF62BEFf;
-address public constant READ_COMPATIBLE_DVN = 0x1308151a7ebaC14f435d3Ad5fF95c34160D539A5;
+// Configuration constants - REPLACE WITH YOUR VALUES
+uint32 public constant READ_CHANNEL = 4294967295; // LayerZero Read Channel ID
+address public constant ENDPOINT_ADDRESS = 0x1a44076050125825900e736c501f859c50fE728c; // LayerZero V2 Endpoint
+address public constant READ_LIB_ADDRESS = 0xbcd4CADCac3F767C57c4F402932C4705DF62BEFf; // ReadLib1002 address for your chain - UPDATE THIS
+address public constant READ_COMPATIBLE_DVN = 0x1308151a7ebaC14f435d3Ad5fF95c34160D539A5; // DVN that supports read operations - UPDATE THIS
 ```
 
 **📚 Resources for Addresses:**

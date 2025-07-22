@@ -36,37 +36,37 @@ contract SetConfigScript is Script {
         ILayerZeroEndpointV2 endpoint = ILayerZeroEndpointV2(ENDPOINT_ADDRESS);
         ReadPublic myReadApp = ReadPublic(readPublicAddress);
         
-        // // 1. Set Read Library (only on source chain)
-        // console.log("Step 1: Setting Read Library...");
-        // endpoint.setSendLibrary(readPublicAddress, READ_CHANNEL, READ_LIB_ADDRESS);
-        // endpoint.setReceiveLibrary(readPublicAddress, READ_CHANNEL, READ_LIB_ADDRESS, 0);
+        // 1. Set Read Library (only on source chain)
+        console.log("Step 1: Setting Read Library...");
+        endpoint.setSendLibrary(readPublicAddress, READ_CHANNEL, READ_LIB_ADDRESS);
+        endpoint.setReceiveLibrary(readPublicAddress, READ_CHANNEL, READ_LIB_ADDRESS, 0);
         
-        // // 2. Configure DVNs (must support target chains you want to read from)
-        // console.log("Step 2: Configuring DVNs...");
-        // SetConfigParam[] memory params = new SetConfigParam[](1);
+        // 2. Configure DVNs (must support target chains you want to read from)
+        console.log("Step 2: Configuring DVNs...");
+        SetConfigParam[] memory params = new SetConfigParam[](1);
         
-        // address[] memory requiredDVNs = new address[](1);
-        // requiredDVNs[0] = READ_COMPATIBLE_DVN;
+        address[] memory requiredDVNs = new address[](1);
+        requiredDVNs[0] = READ_COMPATIBLE_DVN;
         
-        // address[] memory optionalDVNs = new address[](0);
+        address[] memory optionalDVNs = new address[](0);
         
-        // params[0] = SetConfigParam({
-        //     eid: READ_CHANNEL,
-        //     configType: 1, // LZ_READ_LID_CONFIG_TYPE
-        //     config: abi.encode(ReadLibConfig({
-        //         executor: address(0x31CAe3B7fB82d847621859fb1585353c5720660D), // Executor address - UPDATE THIS
-        //         requiredDVNCount: 1,
-        //         optionalDVNCount: 0,
-        //         optionalDVNThreshold: 0,
-        //         requiredDVNs: requiredDVNs,
-        //         optionalDVNs: optionalDVNs
-        //     }))
-        // });
-        // endpoint.setConfig(readPublicAddress, READ_LIB_ADDRESS, params);
+        params[0] = SetConfigParam({
+            eid: READ_CHANNEL,
+            configType: 1, // LZ_READ_LID_CONFIG_TYPE
+            config: abi.encode(ReadLibConfig({
+                executor: address(0x31CAe3B7fB82d847621859fb1585353c5720660D), // Executor address - UPDATE THIS
+                requiredDVNCount: 1,
+                optionalDVNCount: 0,
+                optionalDVNThreshold: 0,
+                requiredDVNs: requiredDVNs,
+                optionalDVNs: optionalDVNs
+            }))
+        });
+        endpoint.setConfig(readPublicAddress, READ_LIB_ADDRESS, params);
         
-        // // 3. Activate Read Channel (enables receiving responses)
-        // console.log("Step 3: Activating Read Channel...");
-        // myReadApp.setReadChannel(READ_CHANNEL, true);
+        // 3. Activate Read Channel (enables receiving responses)
+        console.log("Step 3: Activating Read Channel...");
+        myReadApp.setReadChannel(READ_CHANNEL, true);
         
         // 4. Set Enforced Options (with lzRead-specific options)
         console.log("Step 4: Setting Enforced Options...");
